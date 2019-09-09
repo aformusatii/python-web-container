@@ -1,0 +1,16 @@
+ bin
+    server.py
+ webapps
+    home_portal
+        static
+            js
+            css
+            index.html
+        handlers.py
+            
+    stats
+        static
+            js
+            css
+        handlers.py
+ logs

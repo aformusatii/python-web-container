@@ -1,0 +1,102 @@
+<nav id="navbar" class="navbar navbar-expand-md navbar-dark fixed-top bg-dark flex-md-nowrap p-0" ng-controller="NavBarController">
+    <a class="navbar-brand col-md-1" href="#">Home Portal</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+            <!-- Service Descriptors -->
+            <li class="nav-item" ng-repeat="item in navItems" ng-class="{'active': $location.path() == ('/' + item.path)}">
+                <a class="nav-link" href="#!{{item.path}}">{{item.name}}</a>
+            </li>
+        </ul>
+
+        <ul class="navbar-nav mt-2 mt-md-0">
+            <!-- Environment -->
+            <li class="nav-item" ng-show="$location.path() == '/environment'">
+                <a class="nav-link"
+                   ng-show="!serviceSelected"
+                   href="javascript:void(0)"
+                   data-toggle="modal"
+                   data-target="#addEditServerModal"
+                   data-modal-type="ADD">
+                    <span data-feather="plus-circle"></span> Add Service
+                </a>
+            </li>
+
+            <li class="nav-item" ng-show="$location.path() == '/environment'">
+                <a class="nav-link"
+                   ng-show="serviceSelected"
+                   href="javascript:void(0)"
+                   data-toggle="modal"
+                   data-target="#addEditServerModal"
+                   data-modal-type="EDIT">
+                    <span data-feather="edit"></span> Edit Service
+                </a>
+            </li>
+
+            <li class="nav-item" ng-show="$location.path() == '/environment'">
+                <a class="nav-link"
+                   ng-show="serviceSelected"
+                   href="javascript:void(0)"
+                   data-toggle="modal"
+                   data-target="#confirmationModal"
+                   data-title="Confirm Delete"
+                   data-message="Do you really want to delete this service?"
+                   data-callback="deleteService()">
+                    <span data-feather="trash-2"></span> Delete Service
+                </a>
+            </li>
+
+            <li class="nav-item" ng-show="$location.path() == '/environment'">
+                <a class="nav-link"
+                   ng-show="!serviceSelected"
+                   href="javascript:void(0)"
+                   data-toggle="modal"
+                   data-target="#confirmationModal"
+                   data-title="Confirm Delete"
+                   data-message="Do you really want to delete this environment?"
+                   data-callback="deleteEnvironment()">
+                    <span data-feather="trash-2"></span> Delete Environment
+                </a>
+            </li>
+
+            <!-- Service Descriptors -->
+            <li class="nav-item" ng-show="$location.path() == '/service-descriptors'">
+                <a class="nav-link"
+                   href="javascript:void(0)"
+                   onclick="saveDescriptor()">
+                    <span data-feather="save"></span> Save Changes
+                </a>
+            </li>
+
+            <li class="nav-item" ng-show="$location.path() == '/service-descriptors'">
+                <a class="nav-link"
+                   href="javascript:void(0)"
+                   data-toggle="modal"
+                   data-target="#addEditServiceDescriptorModal"
+                   data-modal-type="EDIT">
+                    <span data-feather="edit"></span> Rename
+                </a>
+            </li>
+
+            <li class="nav-item" ng-show="$location.path() == '/service-descriptors'">
+                <a class="nav-link"
+                   href="javascript:void(0)"
+                   data-toggle="modal"
+                   data-target="#confirmationModal"
+                   data-title="Confirm Delete"
+                   data-message="Do you really want to delete this service descriptor?"
+                   data-callback="deleteDescriptor()">
+                    <span data-feather="trash-2"></span> Delete Descriptor
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<script type="text/javascript">
+    resizeScreen();
+    applyFeather();
+    $('#navbar').on('shown.bs.collapse hidden.bs.collapse', resizeScreen);
+</script>
