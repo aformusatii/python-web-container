@@ -1,0 +1,3 @@
+[submodule "webapps/AdminLTE"]
+	path = webapps/AdminLTE
+	url = https://github.com/ColorlibHQ/AdminLTE
